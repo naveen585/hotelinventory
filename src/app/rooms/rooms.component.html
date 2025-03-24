@@ -1,0 +1,84 @@
+
+<!--    
+Interpolation:
+    The value of the hotelName variable will be updated in the h1 tag, just by using the {{}} syntax.    
+
+    <h1>Welcome to {{hotelName}}</h1>
+-->
+<!-- 
+<h1>Welcome to {{hotelName}}</h1>
+
+<app-header></app-header> -->
+
+<!-- <app-header></app-header>
+<app-header></app-header>
+<app-header></app-header>
+<app-header></app-header> -->
+
+<!--
+    Property Binding: The value of the noOfRooms variable will be updated in the div tag
+    The value of the noOfRooms variable will be updated in the div tag
+    The div tag will be hidden if the hideRooms variable is true
+-->
+<!-- <div [hidden]="hideRooms" [ngStyle]="{'color': room.availableRooms > 0 ? 'green' : 'red'}">
+    <p>Number of Rooms: </p>
+    <div [innerText]="noOfRooms"></div> -->
+     <!-- <div [innerText]="roomCount$"></div>  -- need to chec whether it is possible or not-->
+<!-- </div> -->
+
+<!-- <h1> Number of rooms : {{ roomCount$ | async}}</h1> -->
+
+
+<!--
+    {{ room.availableRooms ?? 'No Rooms Available' }}  --  Nullish Coalescing 
+
+    
+    Structural Directives: The div tag will be hidden if the hideRooms variable is true
+    The ngIf directive will check the condition and if it is true, it will display the div tag
+-->
+
+<!-- <div *ngIf="selectedRoom">
+{{selectedRoom | json}}
+</div>
+
+<h1>{{getError$ | json }}</h1> -->
+
+
+<div>
+    <button (click)="addRoom()">Add Room</button>
+</div>
+
+<!--
+
+ * - It means these are Structural Directives, which can modify the dom elements.
+ we can also have various lot of fucntions in ngFor like displaying index and so on.
+
+ ngClass and ngStyle these are attribute directives.
+-->
+
+<div>
+    <input type="number" class="form-control" placeholder="Price" [formControl]="priceFilter">
+</div>
+
+<div *ngIf = "rooms$ | async as rooms"> <!-- Optional Chaining -->
+    <!--
+    We have replaced the table code from here and made a component which we can able to re use without having any dependencies 
+    just by using the tags and binding the required data type with it. 
+    -->
+    <app-rooms-list [rooms]="rooms" [title]="title" (selectedRoom)="selectRoom($event)" [price]="priceFilter.value"></app-rooms-list>
+</div>
+
+<!--
+    Event Binding: Based on the actions performed the output the value will be updated on hidrRooms variable
+-->
+<!-- <button (click)="toggle()">Toggle Rooms</button>
+<button (click)="editRoom()">Edit Room</button>
+<button (click)="deleteRoom()">Delete Room</button>
+
+<h1>{{total}} loaded</h1>
+<h1>{{uploadBytes}} uploaded</h1> -->
+<!-- 
+This is used for the nested routing, to render the rooms booking html tags after the rooms component has been rendered the page.
+This is called nested routing.
+-->
+<router-outlet></router-outlet>
