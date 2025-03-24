@@ -1,0 +1,51 @@
+<!-- 
+ The pristine means it is an freshstart where user hasn't touched the view or filled the details.
+ The dirty is vice versa for it where it will become dirty once the user has made any changes and these values will also be vice versa.
+  -->
+
+<!-- {{roomsForm.pristine| json }}
+{{roomsForm.dirty| json }} -->
+
+<!-- 
+The valid is an boolean flag where it will be true is all the conditions provided is satisfied it will be true otherwise false.
+Vice versa for the invalid.
+ -->
+<!-- {{roomsForm.valid| json }}
+{{roomsForm.invalid| json }}
+{{roomsForm.value| json }} -->
+
+<div class="alert alert-sucess"> 
+    {{sucessMessage}}
+</div>
+
+<!-- 
+The # will create the instance of this particular form element and it will be useful for manipulating the data,
+and also helpful to add validations to the form.
+ -->
+
+<form #roomsForm="ngForm" (ngSubmit)="AddRoom(roomsForm)">
+    <div class="form-group">
+        <input required class="form-control" type="text" name="roomType" [(ngModel)]="room.roomType" placeholder="Room Type"/>
+    </div>
+    <div class="form-group">
+        <input #roomamenities = "ngModel" required minlength="5" class="form-control" type="text" name="amenities" [(ngModel)]="room.amenities" placeholder="Amenities"/>
+    <div class="alert alert-danger" *ngIf="roomamenities.errors?.['minlength']">
+        Amenities length should be minimum 5 characters!!
+    </div>
+    </div>
+    <div class="form-group">
+        <input required class="form-control" type="number" name="price" [(ngModel)]="room.price" placeholder="Price per night"/>
+    </div>
+    <div class="form-group">
+        <input required class="form-control" type="text" name="photos" [(ngModel)]="room.photos" placeholder="Photos link"/>
+    </div>
+    <div class="form-group">
+        <input required class="form-control" type="datetime" name="checkinTime" [(ngModel)]="room.checkinTime" placeholder="Check-in Time"/>
+    </div>
+    <div class="form-group">
+        <input required class="form-control" type="datetime" name="CheckoutTime" [(ngModel)]="room.CheckoutTime" placeholder="Check-out Time"/>
+    </div>
+    <div>
+<button class="btn btn-primary" type="submit" [disabled]="roomsForm.invalid"> Submit</button>
+    </div>
+</form>

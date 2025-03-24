@@ -1,0 +1,34 @@
+
+<h2>{{title}}</h2> 
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Index</th>
+            <th>Even/Odd</th>
+            <th>Room Number</th>
+            <th>Room Type</th>
+            <th>Room Price</th>
+            <th>Amenities</th>
+            <th>Photos</th>
+            <th>Check In time</th>
+            <th>Select Room</th>
+        </tr>
+        <tr [ngClass]=" e? 'even':'odd'"
+        *ngFor="let room of rooms | filter : price ; let i = index; let o =odd; let e = even">
+            <td>{{i}}</td>
+            <td>{{e ? 'Odd' : 'Even'}}</td>
+            <td>{{room.roomNumber}}</td>
+            <td>{{room.roomType}}</td>
+            <td>{{room.price}}</td>
+            <td>{{room.amenities | titlecase}}</td>
+            <td><img [src]="room.photos" alt="Room Photo" width="100" height="100"></td>
+            <td>{{room.checkinTime  }}</td>
+            <td><button [routerLink] ="['/booking', room.roomNumber ]">Book Room</button></td>
+            <!-- <td> <button class="btn btn-primary" (click)="selectRoom(room)">Select</button></td> -->
+             <!-- This is how we have to configure the dynamic url and '/' this is used because the url has to start from here otherwise
+              in angular by default it will append the below mentioned url to the existing one. 
+              -->
+        </tr>
+
+    </tbody>
+    </table>
