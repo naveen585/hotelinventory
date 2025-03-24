@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "build:prod" : "ng build -c=production",
     "serve:ssr:hotelinventoryapp": "node dist/hotelinventoryapp/server/server.mjs"
   },
   "private": true,
